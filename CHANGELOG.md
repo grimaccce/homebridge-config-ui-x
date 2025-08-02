@@ -10,6 +10,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - reduce font size in accessory label by 1px
 - updates to the credits modal
 - refreshed icons: stateless programmable switch
+- refreshed icons: security system
 
 ### Other Changes
 

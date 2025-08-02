@@ -11,6 +11,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - updates to the credits modal
 - refreshed icons: stateless programmable switch
 - refreshed icons: security system
+- refreshed icons: lock mechanism
 
 ### Other Changes
 

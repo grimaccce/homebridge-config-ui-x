@@ -18,11 +18,12 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 
 - fix custom uis which use ui translation strings
 - fix saving custom attributes for ui layouts
+- update `@homebridge/node-pty-prebuilt-multiarch` to `v0.14-beta`
 
 ### Homebridge Dependencies
 
 - `@homebridge/hap-client` @ `v3.1.1`
-- `@homebridge/node-pty-prebuilt-multiarch` @ `v0.13.1`
+- `@homebridge/node-pty-prebuilt-multiarch` @ `v0.14.0-beta`
 - `@homebridge/plugin-ui-utils` @ `v2.1.0`
 
 ## v5.4.0 (2025-08-02)

@@ -12,6 +12,7 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 ### Other Changes
 
 - fix custom uis which use ui translation strings
+- fix saving custom attributes for ui layouts
 
 ### Homebridge Dependencies
 

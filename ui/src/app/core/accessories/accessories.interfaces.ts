@@ -6,7 +6,7 @@ export type AccessoryLayout = {
     aid: number
     iid: number
     uuid: string
-    uniqueId: string
+    uniqueId?: string
     customName?: string
     customType?: string
     hidden?: boolean

@@ -145,8 +145,37 @@ export class AccessoriesService {
    * Save the room layout
    */
   public saveLayout() {
-    // Generate layout schema to save to disk
-    this.accessoryLayout = this.rooms.map(room => ({
+    // Load the existing cache layout
+    const existingLayout = this.accessoryLayout || []
+
+    // Merge existing services with the current room layout
+    const mergedLayout = existingLayout.map((room) => {
+      const currentRoom = this.rooms.find(r => r.name === room.name)
+      if (currentRoom) {
+        // Merge services from the existing cache and current room
+        const mergedServices = [...room.services]
+        currentRoom.services.forEach((service) => {
+          if (!mergedServices.find(s => s.uniqueId === service.uniqueId)) {
+            mergedServices.push(service)
+          }
+        })
+        return { ...room, services: mergedServices }
+      }
+      return room
+    })
+
+    // Add any new rooms from the current layout
+    this.rooms.forEach((room) => {
+      if (!mergedLayout.find(r => r.name === room.name)) {
+        mergedLayout.push({
+          name: room.name,
+          services: room.services,
+        })
+      }
+    })
+
+    // Generate the layout schema to save to disk
+    this.accessoryLayout = mergedLayout.map(room => ({
       name: room.name,
       services: room.services.map(service => ({
         uniqueId: service.uniqueId,
@@ -158,7 +187,7 @@ export class AccessoriesService {
         hidden: service.hidden || undefined,
         onDashboard: service.onDashboard || undefined,
       })),
-    })).filter(room => room.services.length)
+    }))
 
     // Send update request to server
     this.io.request('save-layout', { user: this.$auth.user.username, layout: this.accessoryLayout }).subscribe({
@@ -195,13 +224,6 @@ export class AccessoriesService {
     // Update the existing objects to avoid re-painting the dom element each refresh
     services.forEach((service) => {
       const existing = this.accessories.services.find(x => x.uniqueId === service.uniqueId)
-
-      // Special case for locks - if there exists just one mechanism and one management service, link them
-      // This allows us to manage the settings for lock management inside the long press modal for the lock mechanism
-      if (service.type === 'LockMechanism') {
-        this.attachLockManagementToMechanism(service)
-      }
-
       if (existing) {
         Object.assign(existing, service)
       } else {
@@ -227,6 +249,12 @@ export class AccessoriesService {
           service.linkedServices[iid] = this.accessories.services.find(s => s.aid === service.aid && s.iid === iid
             && s.instance.username === service.instance.username)
         })
+      }
+
+      // Special case for locks - if there exists just one mechanism and one management service, link them
+      // This allows us to manage the settings for lock management inside the long press modal for the lock mechanism
+      if (service.type === 'LockMechanism') {
+        this.attachLockManagementToMechanism(service)
       }
 
       // Check if the service has already been allocated to an active room

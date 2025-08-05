@@ -10,6 +10,10 @@ All notable changes to `homebridge-config-ui-x` will be documented in this file.
 - refreshed icons: lock mechanism
 - refreshed icons: irrigation system + valves
 
+### Other Changes
+
+- fix saving custom attributes for ui layouts
+
 ### Homebridge Dependencies
 
 - `@homebridge/hap-client` @ `v3.1.1`

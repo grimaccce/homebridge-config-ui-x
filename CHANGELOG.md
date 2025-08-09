@@ -2,6 +2,27 @@
 
 All notable changes to `homebridge-config-ui-x` will be documented in this file. This project tries to adhere to [Semantic Versioning](http://semver.org/).
 
+## v5.4.2 (Unreleased)
+
+### UI Changes
+
+- refreshed icons: security system
+- refreshed icons: lock mechanism
+- refreshed icons: irrigation system + valves
+- refreshed icons: light, leak, motion, occ. sensor
+- Expand/Collapse state saving for Update Information - Docker Information #2529
+
+### Other Changes
+
+- update `@homebridge/node-pty-prebuilt-multiarch` to `v0.14-beta`
+- fix saving custom attributes for ui layouts
+
+### Homebridge Dependencies
+
+- `@homebridge/hap-client` @ `v3.1.1`
+- `@homebridge/node-pty-prebuilt-multiarch` @ `v0.14.1-beta`
+- `@homebridge/plugin-ui-utils` @ `v2.1.0`
+
 ## v5.4.1 (2025-08-05)
 
 ### UI Changes
